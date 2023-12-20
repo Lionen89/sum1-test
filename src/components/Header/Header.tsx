@@ -4,10 +4,10 @@ import { Link, useLocation } from 'react-router-dom'
 const Header: React.FC = () => {
   const location = useLocation()
   const headerData = [
-    { id: 1, path: '/', title: 'На главную' },
-    { id: 2, path: '/login', title: 'Войти' },
-    { id: 3, path: '/profile', title: 'Профиль' },
-    { id: 4, path: '/registration', title: 'Регистрация' },
+    { id: 0, path: '/', title: 'На главную' },
+    { id: 1, path: '/login', title: 'Войти' },
+    { id: 2, path: '/profile', title: 'Профиль' },
+    { id: 3, path: '/registration', title: 'Регистрация' },
   ]
   return (
     <header className="header">
