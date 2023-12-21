@@ -1,0 +1,102 @@
+@import '../../utils/styles/mixins.scss';
+@import '../../utils/styles/variables';
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80svh;
+  &__container {
+    @include size(800px, 350px);
+    padding-top: 50px;
+    box-shadow: 11px 11px 14px rgba(97, 97, 97, 0.12);
+    border: 2px solid $greenText;
+    border-radius: 10px;
+    background-color: white;
+    @include flex-center-column;
+    position: relative;
+    box-sizing: border-box;
+    &::after {
+      @include psevdoElement;
+      @include size(143px, 125px);
+      background-image: url('../../images/GolovaPandy.svg');
+      @include backgroundImage;
+      position: absolute;
+      top: -87px;
+      left: -8px;
+    }
+  }
+  &__input {
+    @include reset;
+    border: 2px solid $greenText;
+    min-width: 500px;
+    min-height: 100%;
+    @include text-format(300, 24px, 18px);
+    border-radius: 5px;
+    text-align: center;
+    box-sizing: border-box;
+    &:focus {
+      outline: 0;
+      outline-offset: 0;
+    }
+    &-container {
+      position: relative;
+      display: flex;
+      height: 60px;
+    }
+    &_error {
+      border: 2px solid $errorColor;
+    }
+  }
+  &__form {
+    @include flex-column;
+    @include reset;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+  }
+  &__save-button {
+    @include reset;
+    min-height: 60px;
+    width: 250px;
+    @include text-format(300, 24px, 18px);
+    box-shadow: 11px 11px 14px rgba(97, 97, 97, 0.12);
+    border: 0.5px solid;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 2px solid $greenText;
+    background: inherit;
+
+    &:hover {
+      @include hoverScale;
+    }
+  }
+  &__eye {
+    @include reset;
+    @include size(48px, 19px);
+    background-image: url('../../images/Glaz_otkrytiy.svg');
+    @include backgroundImage;
+    background-size: 100%;
+    background-position: middle center;
+    border: none;
+    background-color: inherit;
+    position: absolute;
+    top: 20px;
+    right: -68px;
+    &_close {
+      background-image: url('../../images/Glaz_zakritiy.svg');
+      @include size(48px, 21px);
+      top: 18px;
+    }
+  }
+  &__error {
+    @include reset;
+    @include text-format(200, 14px, 100%);
+    color: $errorColor;
+    text-align: left;
+    position: absolute;
+    top: 64px;
+    left: 0;
+  }
+}

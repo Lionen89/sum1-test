@@ -1,0 +1,39 @@
+@import '../../utils/styles/mixins.scss';
+@import '../../utils/styles/variables';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+  background-image: url(../../images/Vector_2.svg);
+  @include backgroundImage;
+  background-size: auto;
+  background-position: 79% 1%;
+  border-bottom: 1px solid rgba(158, 184, 29, 0.48);
+  &__links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    min-width: 70%;
+  }
+
+  &__text {
+    @include text-format(400, 21px, 100%);
+    color: $greenText;
+    min-height: 25px;
+  }
+  &__link {
+    @include linkStyle;
+    transition: border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+    &_active {
+      border-bottom: 2px solid orange;
+    }
+  }
+  &__email {
+    @include reset;
+    @include text-format(400, 21px, 14px);
+  }
+}

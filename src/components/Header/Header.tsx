@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import './Header.scss'
 
 const Header: React.FC = () => {
   const location = useLocation()
@@ -12,13 +13,16 @@ const Header: React.FC = () => {
   return (
     <header className="header">
       <div className="header__links">
-        <p className="header__text header__email">{location.pathname === '/' ? '' : ''}</p>
         {headerData.map((item) => (
-          <Link to={item.path} key={item.id} className="header__text header__link">
+          <Link
+            to={item.path}
+            key={item.id}
+            className={`header__text header__link ${location.pathname === item.path ? 'header__link_active' : ''}`}>
             {item.title}
           </Link>
         ))}
       </div>
+      <p className="header__text header__email">{location.pathname === '/' ? '' : ''}dsdaadsad</p>
     </header>
   )
 }

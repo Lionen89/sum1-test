@@ -1,0 +1,17 @@
+@import '../../utils/styles/mixins.scss';
+@import '../../utils/styles/variables';
+
+.footer {
+  padding: 0 20px;
+  min-height: 5svh;
+  border-top: 1px solid rgba(158, 184, 29, 0.48);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__copiright {
+    @include reset;
+    @include text-format(400, 14px, 100%);
+    color: $greenText;
+  }
+}
