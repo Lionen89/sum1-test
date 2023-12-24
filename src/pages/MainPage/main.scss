@@ -1,0 +1,28 @@
+@import '../../utils/styles/mixins.scss';
+
+.main {
+  @include flex-center-column;
+  gap: 20px;
+  background-image: url('../../images/Main-panda.svg');
+  @include backgroundImage;
+  background-position: left bottom;
+  background-size: auto;
+  height: 86svh;
+  text-align: center;
+  &__title {
+    min-height: 50px;
+    @include text-format(500, 35px, 67.7%);
+    @include backgroundImage;
+    background-image: url('../../images/page-title-img.svg');
+    background-size: auto;
+    background-position: right 0;
+    padding: 10px 60px 0 50px;
+    text-align: center;
+  }
+  &__text {
+    @include text-format(200, 22px, 100%);
+    @include reset;
+    color: grey;
+    margin-bottom: 30px;
+  }
+}

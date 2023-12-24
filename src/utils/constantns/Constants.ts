@@ -20,4 +20,11 @@ const validationMessages: ValidationMessages = {
   lastName: 'Фамилия не должна содержать пробел, спецсимволы и цифры',
 }
 
-export { regexEmail, regexTel, regexName, validationMessages }
+const linksData = [
+  { id: 0, path: '/', title: 'На главную' },
+  { id: 1, path: '/login', title: 'Войти' },
+  { id: 2, path: '/profile', title: 'Профиль' },
+  { id: 3, path: '/registration', title: 'Регистрация' },
+]
+
+export { regexEmail, regexTel, regexName, validationMessages, linksData }

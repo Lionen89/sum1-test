@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom'
 
-const ProtectedRoutes = ({ authorized }) => {
+const ProtectedAuthRoute = ({ authorized }) => {
   return authorized ? <Outlet /> : <Navigate to="/login" />
 }
 
-export default ProtectedRoutes
+export default ProtectedAuthRoute

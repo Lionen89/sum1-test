@@ -1,0 +1,24 @@
+@import '../../utils/styles/mixins.scss';
+@import '../../utils/styles/variables';
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  min-width: 70%;
+
+  &__text {
+    @include text-format(400, 21px, 100%);
+    color: $greenText;
+    min-height: 25px;
+  }
+  &__item {
+    @include linkStyle;
+    transition: border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent;
+    &_active {
+      border-bottom: 2px solid orange;
+    }
+  }
+}

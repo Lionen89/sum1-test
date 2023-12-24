@@ -1,10 +1,21 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { regexEmail, validationMessages } from '../../utils/constantns/Constants'
 import './Login.scss'
+import useEnterSubmit from '../../utils/hooks/useEnterSubmit'
+import { setCurrentUser } from '../../redux/slices/userSlice'
+import { useDispatch } from 'react-redux'
+import useUsers from '../../utils/hooks/useUsers'
+interface LoginProps {
+  setAuthorized: Function
+}
+interface usersData {
+  email: string
+  password: string
+}
 
-const LoginPage: React.FC = () => {
+const LoginPage: React.FC<LoginProps> = ({ setAuthorized }) => {
   const {
     register,
     watch,
@@ -13,16 +24,29 @@ const LoginPage: React.FC = () => {
   } = useForm({ mode: 'all' })
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { users } = useUsers()
 
-  const [isPasswordVisible, setIsPasswordVisible] = React.useState(false)
+  const [isPasswordVisible, setIsPasswordVisible] = React.useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = React.useState<string>('')
 
-  function handlePasswordVisible() {
+  function handlePasswordVisible(): void {
     setIsPasswordVisible(!isPasswordVisible)
   }
 
-  function onSubmit(data: any) {
-    // Обработка логики входа { ...data, needRememberUser: isCheckboxActive }, false)
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const matchingUser = users.find((user: usersData) => user.email === data.email && user.password === data.password)
+    if (matchingUser) {
+      navigate('/profile')
+      setAuthorized(true)
+      dispatch(setCurrentUser(data.email))
+      localStorage.setItem('email', `${data.email}`)
+      localStorage.setItem('isAuth', 'true')
+    } else {
+      setErrorMessage('Имя пользователя или пароль введены не верно')
+    }
   }
+  useEnterSubmit({ handleSubmit: onSubmit })
 
   return (
     <div className="login">
@@ -31,6 +55,7 @@ const LoginPage: React.FC = () => {
           className={`login__form ${errors.email && errors.password ? 'login__form_errors' : ''}`}
           name="login-form"
           onSubmit={handleSubmit(onSubmit)}>
+          {errorMessage && <span className="login__error">{errorMessage}</span>}
           <div className="login__input-container">
             <input
               {...register('email', {
@@ -43,6 +68,8 @@ const LoginPage: React.FC = () => {
               type="email"
               className={`login__input ${errors.email ? 'login__input_error' : ''}`}
               placeholder="Email"
+              autoComplete="current-email"
+              onFocus={() => setErrorMessage('')}
             />
           </div>
           {errors.email && (
@@ -62,6 +89,8 @@ const LoginPage: React.FC = () => {
               type={`${!isPasswordVisible ? 'password' : 'text'}`}
               className={`login__input ${errors.password ? 'login__input_error' : ''}`}
               placeholder="Пароль"
+              autoComplete="current-password"
+              onFocus={() => setErrorMessage('')}
             />
             {errors.password && (
               <span className="login__error">

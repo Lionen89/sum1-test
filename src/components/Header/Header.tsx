@@ -1,28 +1,20 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
 import './Header.scss'
+import Links from '../Links/Links'
+import useUsers from '../../utils/hooks/useUsers'
+import { Link } from 'react-router-dom'
 
 const Header: React.FC = () => {
-  const location = useLocation()
-  const headerData = [
-    { id: 0, path: '/', title: 'На главную' },
-    { id: 1, path: '/login', title: 'Войти' },
-    { id: 2, path: '/profile', title: 'Профиль' },
-    { id: 3, path: '/registration', title: 'Регистрация' },
-  ]
+  const { currentUser } = useUsers()
+
   return (
     <header className="header">
-      <div className="header__links">
-        {headerData.map((item) => (
-          <Link
-            to={item.path}
-            key={item.id}
-            className={`header__text header__link ${location.pathname === item.path ? 'header__link_active' : ''}`}>
-            {item.title}
-          </Link>
-        ))}
-      </div>
-      <p className="header__text header__email">{location.pathname === '/' ? '' : ''}dsdaadsad</p>
+      <Links />
+      {currentUser && (
+        <Link to="/profile" className="header__text">
+          <p className="header__text header__email">{currentUser}</p>
+        </Link>
+      )}
     </header>
   )
 }

@@ -1,0 +1,34 @@
+@import '../../utils/styles/mixins.scss';
+@import '../../utils/styles/variables';
+
+.profile {
+  @include flex-center;
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
+  &__info {
+    @include flex-column;
+    gap: 30px;
+  }
+  &__text {
+    @include text-format(300, 24px, 18px);
+    &_email {
+      color: $greenText;
+    }
+  }
+  &__button {
+    grid-column: span 2;
+    @include reset;
+    min-height: 60px;
+    @include text-format(300, 24px, 18px);
+    box-shadow: 11px 11px 14px rgba(97, 97, 97, 0.12);
+    border: 0.5px solid;
+    border-radius: 15px;
+    border: 2px solid $greenText;
+    background: inherit;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+}
