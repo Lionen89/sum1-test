@@ -4,7 +4,9 @@ import './Footer.scss'
 const Footer: React.FC = () => {
   return (
     <footer className="footer">
-      <p className="footer__copiright">&#169; Илья Трубицин</p>
+      <a target="_blank" href="https://t.me/Lionen" rel="noreferrer" className="footer__link">
+        <p className="footer__copiright">&#169; Илья Трубицин</p>
+      </a>
     </footer>
   )
 }
