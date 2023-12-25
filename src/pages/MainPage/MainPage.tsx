@@ -2,7 +2,7 @@ import React from 'react'
 import './main.scss'
 import Links from '../../components/Links/Links'
 
-function MainPage() {
+const MainPage: React.FC = () => {
   return (
     <div className="main">
       <h1 className="main__title">Приветсвую тебя, дорогой ревьюер</h1>

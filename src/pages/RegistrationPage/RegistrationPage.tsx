@@ -2,9 +2,11 @@ import React from 'react'
 import './Registration.scss'
 import { Link } from 'react-router-dom'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import { regexEmail, validationMessages } from '../../utils/constantns/Constants'
+import { regexEmail, validationMessages } from '../../utils/constants/Constants'
 import useEnterSubmit from '../../utils/hooks/useEnterSubmit'
-import usersData from '../../db.json'
+import useUsers from '../../utils/hooks/useUsers'
+import { Users } from '../../types/Users'
+
 type RegistrationFormData = {
   name: string
   email: string
@@ -12,7 +14,7 @@ type RegistrationFormData = {
   repeatPassword: string
 }
 
-const RegistrationPage: React.FC<any> = ({ handleRegistration }) => {
+const RegistrationPage: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -25,6 +27,8 @@ const RegistrationPage: React.FC<any> = ({ handleRegistration }) => {
   const [errorMessage, setErrorMessage] = React.useState<string>('')
   const [isSignupSucces, setSignupSucces] = React.useState<boolean>(false)
 
+  const { users } = useUsers()
+
   function handlePasswordVisible(): void {
     setIsPasswordVisible(!isPasswordVisible)
   }
@@ -33,7 +37,7 @@ const RegistrationPage: React.FC<any> = ({ handleRegistration }) => {
   }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    const matchingUser = usersData.users.find((user) => user.email === data.email)
+    const matchingUser = users.find((user: Users) => user.email === data.email)
     if (matchingUser) {
       setErrorMessage('Пользователь с таким логином уже зарегистрирован')
     } else {

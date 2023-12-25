@@ -1,6 +1,6 @@
+@import '../../utils/styles/mixins.scss';
+
 .layout {
   min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @include flex-space-between-column;
 }

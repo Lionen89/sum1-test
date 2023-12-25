@@ -7,3 +7,7 @@
 - `npm run start` - запуск проекта
 
 [Ссылка на задеплоенное приложение](https://main--illustrious-palmier-891684.netlify.app/)
+
+Тестовый пользователь:
+login: 1234@mail.ru
+password: 123456

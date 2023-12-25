@@ -1,5 +1,5 @@
 import React from 'react'
-import { linksData } from '../../utils/constantns/Constants'
+import { linksData } from '../../utils/constants/Constants'
 import { Link, useLocation } from 'react-router-dom'
 import './links.scss'
 

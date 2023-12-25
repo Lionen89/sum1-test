@@ -6,7 +6,7 @@ import useUsers from '../../utils/hooks/useUsers'
 import { useDispatch } from 'react-redux'
 import { setCurrentUser } from '../../redux/slices/userSlice'
 interface ProfileProps {
-  setAuthorized: Function
+  setAuthorized: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const ProfilePage: React.FC<ProfileProps> = ({ setAuthorized }) => {
@@ -15,7 +15,7 @@ const ProfilePage: React.FC<ProfileProps> = ({ setAuthorized }) => {
   const { currentUser } = useUsers()
 
   const handleLogout = (): void => {
-    localStorage.clear()
+    localStorage.setItem('isAuth', 'false')
     dispatch(setCurrentUser(''))
     setAuthorized(false)
     navigate('/')
@@ -26,8 +26,8 @@ const ProfilePage: React.FC<ProfileProps> = ({ setAuthorized }) => {
       <div className="profile__container">
         <img src={panda} alt="Panda" />
         <div className="profile__info">
-          <span className="profile__text">Your email:</span>
-          <span className="profile__text profile__text_email">{currentUser}</span>
+          <h3 className="profile__title">Привет!</h3>
+          <span className="profile__text">{currentUser}</span>
         </div>
         <button className="profile__button" onClick={handleLogout}>
           Выйти

@@ -12,11 +12,15 @@
     @include flex-column;
     gap: 30px;
   }
+  &__title {
+    @include reset;
+    @include text-format(300, 30px, 120%);
+    text-align: center;
+  }
   &__text {
     @include text-format(300, 24px, 18px);
-    &_email {
-      color: $greenText;
-    }
+    color: $greenText;
+    text-align: center;
   }
   &__button {
     grid-column: span 2;

@@ -2,8 +2,7 @@
 @import '../../utils/styles/variables';
 
 .header {
-  display: flex;
-  justify-content: space-between;
+  @include flex-space-between;
   align-items: center;
   padding: 25px 40px;
   background-image: url(../../images/Vector_2.svg);

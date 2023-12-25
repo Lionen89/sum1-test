@@ -1,16 +1,16 @@
 import React from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { regexEmail, validationMessages } from '../../utils/constantns/Constants'
+import { regexEmail, validationMessages } from '../../utils/constants/Constants'
 import './Login.scss'
 import useEnterSubmit from '../../utils/hooks/useEnterSubmit'
 import { setCurrentUser } from '../../redux/slices/userSlice'
 import { useDispatch } from 'react-redux'
 import useUsers from '../../utils/hooks/useUsers'
 interface LoginProps {
-  setAuthorized: Function
+  setAuthorized: React.Dispatch<React.SetStateAction<boolean>>
 }
-interface usersData {
+interface LoginFormValues {
   email: string
   password: string
 }
@@ -35,7 +35,9 @@ const LoginPage: React.FC<LoginProps> = ({ setAuthorized }) => {
   }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    const matchingUser = users.find((user: usersData) => user.email === data.email && user.password === data.password)
+    const matchingUser = users.find(
+      (user: LoginFormValues) => user.email === data.email && user.password === data.password
+    )
     if (matchingUser) {
       navigate('/profile')
       setAuthorized(true)
@@ -74,7 +76,7 @@ const LoginPage: React.FC<LoginProps> = ({ setAuthorized }) => {
           </div>
           {errors.email && (
             <span className="login__error">
-              {typeof errors.email === 'string' ? errors.email : (errors.email.message as string)}
+              {typeof errors.email === 'string' ? errors.email : (errors.email?.message as string)}
             </span>
           )}
           <div className="login__input-container">
@@ -94,7 +96,7 @@ const LoginPage: React.FC<LoginProps> = ({ setAuthorized }) => {
             />
             {errors.password && (
               <span className="login__error">
-                {typeof errors.password === 'string' ? errors.password : (errors.password.message as string)}
+                {typeof errors.password === 'string' ? errors.password : (errors.password?.message as string)}
               </span>
             )}
             <button
