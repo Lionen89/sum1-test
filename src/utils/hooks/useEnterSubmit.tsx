@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface UseEnterSubmitProps {
-  handleSubmit: (data: any) => void
+  handleSubmit: () => void
 }
 
 const useEnterSubmit = ({ handleSubmit }: UseEnterSubmitProps): void => {
@@ -9,7 +9,7 @@ const useEnterSubmit = ({ handleSubmit }: UseEnterSubmitProps): void => {
     function handleEnter(e: KeyboardEvent): void {
       if (e.key === 'Enter') {
         e.preventDefault()
-        handleSubmit({})
+        handleSubmit()
       }
     }
 

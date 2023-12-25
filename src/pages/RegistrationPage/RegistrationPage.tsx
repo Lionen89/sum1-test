@@ -41,7 +41,7 @@ const RegistrationPage: React.FC<any> = ({ handleRegistration }) => {
     }
   }
 
-  useEnterSubmit({ handleSubmit: onSubmit })
+  useEnterSubmit({ handleSubmit: () => onSubmit({ email: watch('email'), password: watch('password') }) })
 
   return (
     <div className="registration">

@@ -46,7 +46,7 @@ const LoginPage: React.FC<LoginProps> = ({ setAuthorized }) => {
       setErrorMessage('Имя пользователя или пароль введены не верно')
     }
   }
-  useEnterSubmit({ handleSubmit: onSubmit })
+  useEnterSubmit({ handleSubmit: () => onSubmit({ email: watch('email'), password: watch('password') }) })
 
   return (
     <div className="login">

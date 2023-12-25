@@ -16,8 +16,8 @@ const App: React.FC = () => {
   )
 
   return (
-    <div className="app">
-      <Provider store={store}>
+    <Provider store={store}>
+      <div className="app">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<MainPage />} />
@@ -30,8 +30,8 @@ const App: React.FC = () => {
             </Route>
           </Route>
         </Routes>
-      </Provider>
-    </div>
+      </div>
+    </Provider>
   )
 }
 

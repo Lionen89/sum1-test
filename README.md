@@ -6,4 +6,4 @@
 
 - `npm run start` - запуск проекта
 
-[Ссылка на задеплоенное приложение](https://lionen89.github.io/sun1-test/)
+[Ссылка на задеплоенное приложение](https://lionen89.github.io/sum1-test/)
